@@ -13,11 +13,11 @@
     <!-- Chosen Palette: "Calm Neutral Professional" - Background: slate-50, Text: slate-800, Accent: blue-600, Highlights: blue-100/slate-200. -->
     <!-- Application Structure Plan: A dashboard-style SPA featuring a main interactive section and a collapsible context area. The core of the app is a responsive two-column layout: the left column serves as a navigation panel, allowing users to select a candidate, while the right column dynamically displays the selected candidate's detailed profile. This structure is superior to a linear report as it enables rapid switching and comparison, which is the primary user task. Below this, an interactive bar chart provides an immediate visual comparison of candidate experience. Finally, secondary information like the methodology and assumptions are placed in an accordion to reduce initial cognitive load while keeping details accessible. This user-centric design prioritizes exploration and comparison over passive reading. -->
     <!-- Visualization & Content Choices: 
-        - Report Info: List of 5 candidates -> Goal: Navigate/Select -> Presentation: Interactive vertical list -> Interaction: Click to select a candidate and update the main content view -> Justification: An intuitive and standard UI pattern for selecting an item to view its details. -> Library/Method: HTML/Tailwind/JS.
-        - Report Info: Candidate Years of Experience (YOE) -> Goal: Compare -> Viz/Presentation: Horizontal Bar Chart -> Interaction: Hover tooltips show precise YOE -> Justification: Visually communicates differences in experience levels far more effectively than a table number, allowing for at-a-glance comparison of seniority. -> Library/Method: Chart.js (Canvas).
-        - Report Info: Candidate detailed summaries, skills -> Goal: Inform/Drill-down -> Presentation: Dynamically rendered profile card with key skills as styled pills -> Interaction: Content updates based on list selection -> Justification: Presents comprehensive data in a structured, easily digestible format. Pills make technical skills scannable. -> Library/Method: HTML/Tailwind/JS.
-        - Report Info: Assessment Methodology & Assumptions -> Goal: Organize/Contextualize -> Presentation: Collapsible accordion sections -> Interaction: Click to expand/collapse content -> Justification: Hides detailed contextual information by default, keeping the main interface clean and focused on the primary task of evaluating candidates. -> Library/Method: HTML/Tailwind/JS.
-        - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+         - Report Info: List of 5 candidates -> Goal: Navigate/Select -> Presentation: Interactive vertical list -> Interaction: Click to select a candidate and update the main content view -> Justification: An intuitive and standard UI pattern for selecting an item to view its details. -> Library/Method: HTML/Tailwind/JS.
+         - Report Info: Candidate Years of Experience (YOE) -> Goal: Compare -> Viz/Presentation: Horizontal Bar Chart -> Interaction: Hover tooltips show precise YOE -> Justification: Visually communicates differences in experience levels far more effectively than a table number, allowing for at-a-glance comparison of seniority. -> Library/Method: Chart.js (Canvas).
+         - Report Info: Candidate detailed summaries, skills -> Goal: Inform/Drill-down -> Presentation: Dynamically rendered profile card with key skills as styled pills -> Interaction: Content updates based on list selection -> Justification: Presents comprehensive data in a structured, easily digestible format. Pills make technical skills scannable. -> Library/Method: HTML/Tailwind/JS.
+         - Report Info: Assessment Methodology & Assumptions -> Goal: Organize/Contextualize -> Presentation: Collapsible accordion sections -> Interaction: Click to expand/collapse content -> Justification: Hides detailed contextual information by default, keeping the main interface clean and focused on the primary task of evaluating candidates. -> Library/Method: HTML/Tailwind/JS.
+         - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 
     <style>
         body {
@@ -102,6 +102,7 @@
     </div>
 
     <script>
+        // Candidate data with updated experience values
         const candidateData = [
             {
                 id: 'ashwarya',
@@ -109,6 +110,7 @@
                 role: 'Senior Software Engineer (Backend)',
                 location: 'Noida/Gurgaon',
                 yoe: 8,
+                yoe_text: '8 years',
                 highlights: ['Node.js', 'AWS', 'MongoDB', 'REST/SOAP APIs', 'Co-founder experience', 'API architecture', 'Billing platforms'],
                 summary: "Ashwarya stands out as a top-tier candidate due to her 8 years of experience combined with prior co-founder experience. This background is invaluable for a founding team role, suggesting a deep understanding of the business and product aspects of building a company from the ground up. Her expertise in API architecture and building billing platforms is directly applicable to creating a robust, monetizable travel service. Her proficiency with Node.js, AWS, and MongoDB perfectly matches the core tech stack. She represents the ideal blend of technical leadership and entrepreneurial spirit.",
                 linkedin: 'https://www.linkedin.com/in/ashwarya-jethi-40235a96/?originalSubdomain=in'
@@ -118,9 +120,10 @@
                 name: 'Kiran Kumar Das',
                 role: 'Senior Software Engineer II',
                 location: 'Bengaluru & Gurgaon',
-                yoe: 7,
+                yoe: 5.2,
+                yoe_text: '5 years 2 months',
                 highlights: ['Java Spring Boot', 'Node.js microservices', 'B2B flight-booking APIs', 'Latency-critical SSE', 'React Native UIs'],
-                summary: "Kiran's profile is exceptionally strong due to his 7+ years of experience at MakeMyTrip, a leader in the Indian travel tech space. His work on B2B flight-booking APIs and latency-critical services is directly relevant to the company's mission. This experience implies a deep understanding of the domain's complexities, from GDS integrations to performance optimization. While he has Java experience, his proficiency in Node.js for microservices makes him a versatile and highly relevant candidate who can bring invaluable industry knowledge to the team.",
+                summary: "Kiran's profile is strong due to his 5+ years of experience at MakeMyTrip, a leader in the Indian travel tech space. His work on B2B flight-booking APIs and latency-critical services is directly relevant to the company's mission. This experience implies a deep understanding of the domain's complexities, from GDS integrations to performance optimization. While he has Java experience, his proficiency in Node.js for microservices makes him a versatile and highly relevant candidate who can bring invaluable industry knowledge to the team.",
                 linkedin: 'https://www.linkedin.com/in/kiran-kumar-das/?originalSubdomain=in'
             },
             {
@@ -128,9 +131,10 @@
                 name: 'Lakshay Kalra',
                 role: 'Senior Backend Developer',
                 location: 'Gurugram',
-                yoe: 5,
+                yoe: 9.9,
+                yoe_text: '9 years 11 months',
                 highlights: ['Node.js microservices', 'AWS', 'Docker', 'RabbitMQ', 'System-design leadership', 'Fintech experience'],
-                summary: "Lakshay is a strong contender with 5 years of focused experience in building Node.js microservices on AWS. His profile explicitly mentions 'system-design leadership,' which directly addresses the need for an engineer who can make key architectural decisions. His experience with RabbitMQ suggests familiarity with asynchronous processing, essential for scalable backend systems (e.g., handling visa status updates, notifications). He appears to be a hands-on builder with the architectural foresight needed for a foundational platform.",
+                summary: "Lakshay is a very strong contender with almost 10 years of focused experience in building Node.js microservices on AWS. His profile explicitly mentions 'system-design leadership,' which directly addresses the need for an engineer who can make key architectural decisions. His experience with RabbitMQ suggests familiarity with asynchronous processing, essential for scalable backend systems (e.g., handling visa status updates, notifications). He appears to be a hands-on builder with the architectural foresight needed for a foundational platform.",
                 linkedin: 'https://www.linkedin.com/in/lakshay-kalra/?originalSubdomain=in'
             },
             {
@@ -138,9 +142,10 @@
                 name: 'Bhavesh Kumar',
                 role: 'Senior Backend Engineer',
                 location: 'New Delhi',
-                yoe: 5,
+                yoe: 5.9,
+                yoe_text: '5 years 11 months',
                 highlights: ['Node.js (Express, Nest.js)', 'TypeScript', 'Redis & Kafka', 'MySQL, PostgreSQL & MongoDB', 'AWS', 'Docker & Kubernetes'],
-                summary: "Bhavesh brings a remarkably comprehensive and modern backend skill set. With 5 years of experience, his proficiency spans the entire required stack and beyond, including Node.js (Express and Nest.js), TypeScript, multiple databases (SQL and NoSQL), and messaging systems (Redis, Kafka). This breadth makes him an incredibly versatile engineer who can select and implement the best tool for any given challenge. His experience with both Kubernetes and Docker on AWS confirms his strong DevOps capabilities, making him a self-sufficient builder for the early stages.",
+                summary: "Bhavesh brings a remarkably comprehensive and modern backend skill set. With almost 6 years of experience, his proficiency spans the entire required stack and beyond, including Node.js (Express and Nest.js), TypeScript, multiple databases (SQL and NoSQL), and messaging systems (Redis, Kafka). This breadth makes him an incredibly versatile engineer who can select and implement the best tool for any given challenge. His experience with both Kubernetes and Docker on AWS confirms his strong DevOps capabilities, making him a self-sufficient builder for the early stages.",
                 linkedin: 'https://www.linkedin.com/in/bhavesh-kumar-backend/?originalSubdomain=in'
             },
             {
@@ -148,9 +153,10 @@
                 name: 'Jaya Sharma Awasthi',
                 role: 'Senior Backend Engineer',
                 location: 'Delhi NCR',
-                yoe: 6,
+                yoe: 9.5,
+                yoe_text: '9 years 6 months',
                 highlights: ['Node.js & TypeScript', 'GraphQL', 'Docker & Kubernetes', 'MySQL & MongoDB', 'Angular/React full-stack'],
-                summary: "Jaya offers a solid 6 years of experience with a strong focus on Node.js and TypeScript, which promotes building clean, maintainable code—a crucial practice for a long-term project. Her experience with GraphQL could be a strategic advantage for creating flexible and efficient APIs for a future mobile or web front-end. Her background as a full-stack developer (Angular/React) means she has a great perspective on API design from the consumer's point of view, ensuring better collaboration with any future front-end developers.",
+                summary: "Jaya offers a solid 9.5 years of experience with a strong focus on Node.js and TypeScript, which promotes building clean, maintainable code—a crucial practice for a long-term project. Her experience with GraphQL could be a strategic advantage for creating flexible and efficient APIs for a future mobile or web front-end. Her background as a full-stack developer (Angular/React) means she has a great perspective on API design from the consumer's point of view, ensuring better collaboration with any future front-end developers.",
                 linkedin: 'https://www.linkedin.com/in/jayaasharma92/?originalSubdomain=in'
             }
         ];
@@ -197,7 +203,7 @@
                 title: 'Key Assumptions',
                 content: `
                     <ul class="list-disc list-inside space-y-2 text-slate-600">
-                        <li><strong>Compensation:</strong> The approved compensation package is assumed to be competitive for the Delhi NCR market for senior engineers with 5-8 years of experience (e.g., in the ₹30 L - ₹50 L per annum range, inclusive of potential equity).</li>
+                        <li><strong>Compensation:</strong> The approved compensation package is assumed to be competitive for the Delhi NCR market for senior engineers with relevant experience (e.g., in the ₹30 L - ₹60 L per annum range, inclusive of potential equity, depending on seniority).</li>
                         <li><strong>Candidate Interest:</strong> Active interest in joining a stealth-mode, early-stage startup is assumed but must be validated.</li>
                         <li><strong>Notice Period:</strong> A standard notice period of 2-3 months is assumed, which may be negotiable.</li>
                         <li><strong>Cultural Fit:</strong> This report assesses on-paper qualifications; a thorough interview process is required to evaluate cultural fit and passion.</li>
@@ -263,7 +269,7 @@
                     <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6 text-sm">
                         <div class="bg-white p-3 rounded-lg shadow-sm">
                             <p class="font-semibold text-slate-800">Experience</p>
-                            <p class="text-slate-600">${candidate.yoe} years</p>
+                            <p class="text-slate-600">${candidate.yoe_text || candidate.yoe + ' years'}</p>
                         </div>
                         <div class="bg-white p-3 rounded-lg shadow-sm col-span-2">
                             <p class="font-semibold text-slate-800">Location</p>
@@ -345,13 +351,12 @@
                         tooltip: {
                             callbacks: {
                                 label: function(context) {
+                                    let candidate = candidateData[context.dataIndex];
                                     let label = context.dataset.label || '';
                                     if (label) {
                                         label += ': ';
                                     }
-                                    if (context.parsed.x !== null) {
-                                        label += context.parsed.x + ' years';
-                                    }
+                                    label += candidate.yoe_text || (context.parsed.x + ' years');
                                     return label;
                                 }
                             }
